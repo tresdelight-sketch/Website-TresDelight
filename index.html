@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TresDelight</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <h2>Login / Daftar</h2>
+      <input type="text" id="username" placeholder="Nama kamu"/>
+      <button onclick="login()">Masuk</button>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="brand">
+      <img src="img/logo.jpg" alt="Logo" class="logo"/>
+      <span>TresDelight</span>
+    </div>
+    <input type="checkbox" id="navToggle" class="sr-only">
+    <label for="navToggle" class="hamburger"><i class="fas fa-bars"></i></label>
+    <div class="nav-links">
+      <a href="#home" onclick="closeNav()">Home</a>
+      <a href="#catalog" onclick="closeNav()">Katalog</a>
+      <a href="#cart" onclick="toggleCart(); closeNav();">Keranjang <span id="cartCount">0</span></a>
+      <a href="#" onclick="logout(); closeNav();">Keluar</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <h1>Serunya Pedasnya Wonton Chili Oil & Manis Segarnya Es Kuwut!</h1>
+    <p>Paduan sempurna untuk kenikmatanmu setiap hari.</p>
+  </section>
+
+  <!-- HIGHLIGHT -->
+  <section class="highlight">
+    <div class="box"><i class="fas fa-fire"></i><h3>Pedas Autentik</h3><p>Wonton Chili Oil dibuat dari chili pilihan & rempah berkualitas</p></div>
+    <div class="box"><i class="fas fa-ice-cream"></i><h3>Segar Alami</h3><p>Es Kuwut dengan melon & basil segar</p></div>
+    <div class="box"><i class="fas fa-shipping-fast"></i><h3>Gratis Ongkir</h3><p>Area Pasuruan dan Sekitarnya</p></div>
+  </section>
+
+  <!-- KATALOG PRODUK (HTML MURNI) -->
+  <section id="catalog" class="section">
+    <h2>Katalog Produk</h2>
+    <div class="products">
+      <div class="card">
+        <img src="img/wonton chili oil.jpg" alt="Wonton Chili Oil"/>
+        <h3>Wonton Chili Oil</h3>
+        <p class="price">Rp 5.000</p>
+        <button onclick="addToCart(1)">Tambah ke Keranjang</button>
+      </div>
+      <div class="card">
+        <img src="img/es kuwut.jpg" alt="Es Kuwut"/>
+        <h3>Es Kuwut Segar</h3>
+        <p class="price">Rp 5.000</p>
+        <button onclick="addToCart(2)">Tambah ke Keranjang</button>
+      </div>
+      <div class="card">
+        <img src="img/kombo.jpg" alt="Paket Josjis"/>
+        <h3>Paket Combo Josjis</h3>
+        <p class="price">Rp 8.000</p>
+        <button onclick="addToCart(3)">Tambah ke Keranjang</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIM PENGUSUL (HTML MURNI) -->
+  <section id="team" class="team">
+    <h2>Tim Pengusul TresDelight</h2>
+    <div class="team-group">
+      <img src="img/foto kelompok.jpg" alt="Foto Kelompok"/>
+      <div class="team-desc">
+        <p>Kami adalah tim ber-6 yang bersemangat kuliner. TresDelight lahir dari kecintaan terhadap cita rasa pedas wonton chili oil dan kesegaran es kuwut Bali. Setiap anggota berperan penting dalam pengembangan produk hingga ke tangan konsumen.</p>
+        <ul>
+          <li>01 - Isma Dwi Cahyani</li>
+          <li>02 - Dea AJeng Kartini</li>
+          <li>03 - Verawati</li>
+          <li>04 - Muhammad Al Yaqutun Nafis</li>
+          <li>05 - Muhammad Zainal Abidin</li>
+          <li>06 - Muhammad Dafi Akmal Putra</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="team-members">
+      <div class="team-card"><img src="img/isma.jpg" alt="Tim 1"/><h4>Isma Dwi Cahyani</h4><p>Absen 11</p><span>XI TEKKIN 3</span></div>
+      <div class="team-card"><img src="img/dea ajeng.jpg" alt="Tim 2"/><h4>Dea Ajeng Kartini</h4><p>Absen 08</p><span>XI TEKKIN 3</span></div>
+      <div class="team-card"><img src="img/vera.jpg" alt="Tim 3"/><h4>Verawati</h4><p>Absen 35</p><span>XI TEKKIN 3</span></div>
+      <div class="team-card"><img src="img/nafis.jpg" alt="Tim 4"/><h4>Muhammad Al Yaqutun Nafis</h4><p>Absen 14</p><span>XI TEKKIN 3</span></div>
+      <div class="team-card"><img src="img/zainal.jpg" alt="Tim 5"/><h4>Muhammad Zainal Abidin</h4><p>Absen 22</p><span>XI TEKKIN 3</span></div>
+      <div class="team-card"><img src="img/dafi.jpg" alt="Tim 6"/><h4> Muhammad Dafi Akmal Putra</h4><p>Absen 19</p><span>XI TEKKIN 3</span></div>
+    </div>
+  </section>
+
+  <!-- KERANJANG SIDEBAR -->
+  <div id="cartSidebar" class="cart-sidebar">
+    <h3>Keranjang Belanja</h3>
+    <div id="cartItems"></div>
+    <div class="cart-total">
+      <strong>Total: Rp <span id="totalPrice">0</span></strong>
+    </div>
+    <button class="btn-checkout" onclick="checkoutWhatsApp()">Pesan via WhatsApp</button>
+    <button class="btn-close" onclick="toggleCart()">Tutup</button>
+  </div>
+
+  <!-- FOOTER SOSMED -->
+  <footer class="footer">
+    <p>Hubungi kami:</p>
+    <a href="https://wa.me/6282132719212" target="_blank" class="sosmed">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+    <a href="https://www.instagram.com/tres.delight?igsh=YXNzdnRvbWI0M3B1" target="_blank" class="sosmed">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
